@@ -17,11 +17,21 @@ def load_index(build_dir: Path) -> dict:
     return json.loads(match.group(1))
 
 
+def _as_set(entry: int | list[int]) -> set[int]:
+    """Normalize a searchindex entry (int or list) to a set of doc indices."""
+    if isinstance(entry, int):
+        return {entry}
+    return set(entry)
+
+
 def search(index: dict, query_tokens: list[str]) -> list[str]:
     """Return document names matching all query tokens (AND search).
 
-    Replicates the core logic of Sphinx's searchtools.js, including
-    Sphinx's word_filter (tokens with length <= 1 are discarded).
+    Replicates the core logic of Sphinx's searchtools.js:
+    - Sphinx's word_filter (tokens with length <= 1 are discarded)
+    - Each token is looked up in both ``terms`` (body) and ``titleterms``
+      (section headings); the union of both is used per token
+    - An AND intersection is applied across all tokens
     """
     # Mirror sphinx.search.SearchLanguage.word_filter: len > 1 required.
     filtered = [t for t in query_tokens if len(t) > 1]
@@ -29,15 +39,14 @@ def search(index: dict, query_tokens: list[str]) -> list[str]:
         return []
 
     terms = index.get("terms", {})
+    titleterms = index.get("titleterms", {})
     docnames = index.get("docnames", [])
 
     result_sets: list[set[int]] = []
     for token in filtered:
-        entry = terms.get(token, [])
-        # Sphinx stores a bare int when there is only one matching document.
-        if isinstance(entry, int):
-            entry = [entry]
-        result_sets.append(set(entry))
+        # Union of body-text and title matches (mirrors searchtools.js)
+        docs = _as_set(terms.get(token, [])) | _as_set(titleterms.get(token, []))
+        result_sets.append(docs)
 
     if not result_sets:
         return []
