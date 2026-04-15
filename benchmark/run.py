@@ -90,6 +90,11 @@ class QueryResult:
     not_expected: list[str]
 
     @property
+    def effective_tokens(self) -> list[str]:
+        """Tokens after applying word_filter (len > 1), same as search_client."""
+        return [t for t in self.tokens if len(t) > 1]
+
+    @property
     def tp(self) -> int:
         """True positives: expected documents that were found."""
         return sum(1 for d in self.expected if d in self.results)
@@ -135,6 +140,28 @@ class SplitterResult:
         """F1 score computed from aggregated precision and recall."""
         p, r = self.precision, self.recall
         return 2 * p * r / (p + r) if (p + r) > 0 else 0.0
+
+    @property
+    def avg_token_count(self) -> float:
+        """Average number of effective tokens per query.
+
+        Lower values indicate the splitter keeps compound words intact.
+        """
+        if not self.query_results:
+            return 0.0
+        total = sum(len(qr.effective_tokens) for qr in self.query_results)
+        return total / len(self.query_results)
+
+    @property
+    def single_token_rate(self) -> float:
+        """Fraction of queries resolved to exactly one effective token.
+
+        Higher values indicate better compound-word handling.
+        """
+        if not self.query_results:
+            return 0.0
+        single = sum(1 for qr in self.query_results if len(qr.effective_tokens) == 1)
+        return single / len(self.query_results)
 
 
 # ---------------------------------------------------------------------------
@@ -292,6 +319,65 @@ def print_per_query(results: list[SplitterResult]) -> None:
             print(f"  [{status}] {r.name:<22}  tokens={qr.tokens}  found={qr.results}")
 
 
+def print_simple(results: list[SplitterResult]) -> None:
+    """Print compact output focused on search-tokenizer quality metrics.
+
+    Shows only metrics that differentiate splitters as search tools:
+    - Index size (smaller = less token noise)
+    - Average effective tokens per query (fewer = better compound handling)
+    - Single-token rate (higher = compound words kept intact)
+    - Queries where splitters produce different tokenizations
+    """
+    available = [r for r in results if r.available and r.query_results]
+
+    print("\n" + "=" * 70)
+    print("TOKENIZER QUALITY SUMMARY")
+    print("=" * 70)
+    cols = (
+        f"{'Splitter':<22} {'Build(s)':>8} {'Index(B)':>10}"
+        f" {'Avg tokens':>11} {'Single-tok%':>12}"
+    )
+    print(cols)
+    print("-" * 70)
+    for r in results:
+        if not r.available:
+            print(f"{r.name:<22}  N/A (unavailable)")
+            continue
+        print(
+            f"{r.name:<22} {r.build_time:>8.2f} {r.index_size:>10,}"
+            f" {r.avg_token_count:>11.2f} {r.single_token_rate:>11.1%}"
+        )
+
+    if not available:
+        return
+
+    # --- Queries where splitters disagree on tokenization ---
+    query_ids = [qr.query_id for qr in available[0].query_results]
+    diverging = []
+    for qid in query_ids:
+        rows = {}
+        for r in available:
+            qr = next(x for x in r.query_results if x.query_id == qid)
+            rows[r.name] = qr.effective_tokens
+        token_variants = set(tuple(t) for t in rows.values())
+        if len(token_variants) > 1:
+            diverging.append((qid, rows))
+
+    print(f"\n{'=' * 70}")
+    print(f"TOKENIZATION DIFFERENCES  ({len(diverging)} / {len(query_ids)} queries)")
+    print("=" * 70)
+    if not diverging:
+        print("All splitters produced identical tokenizations.")
+        return
+
+    sample_r = available[0]
+    for qid, rows in diverging:
+        sample_qr = next(x for x in sample_r.query_results if x.query_id == qid)
+        print(f"\n{qid}: {sample_qr.query!r}  ({sample_qr.description})")
+        for name, tokens in rows.items():
+            print(f"  {name:<22} {tokens}")
+
+
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
@@ -307,6 +393,14 @@ def main() -> None:
         default=[],
         help="Splitter names to skip (matched against SPLITTER_REGISTRY[*][0]).",
     )
+    parser.add_argument(
+        "--simple",
+        action="store_true",
+        help=(
+            "Compact output: tokenizer quality metrics and diverging queries only."
+            " Omits Precision/Recall/F1 and the full per-query breakdown."
+        ),
+    )
     args = parser.parse_args()
 
     print("=" * 70)
@@ -316,8 +410,11 @@ def main() -> None:
 
     results = run_benchmark(exclude=args.exclude)
 
-    print_summary(results)
-    print_per_query(results)
+    if args.simple:
+        print_simple(results)
+    else:
+        print_summary(results)
+        print_per_query(results)
 
     unavailable = [r for r in results if not r.available]
     if unavailable:
