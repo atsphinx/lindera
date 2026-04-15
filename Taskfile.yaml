@@ -14,7 +14,7 @@ tasks:
   benchmark:
     desc: 'Run search quality benchmark across Japanese splitters'
     cmds:
-      - 'uv run python -m benchmark.run'
+      - 'uv run python -m benchmark.run {{.CLI_ARGS}}'
 
   setup:
     desc: 'Setup workspace'
