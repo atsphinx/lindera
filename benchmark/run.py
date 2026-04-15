@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import importlib
 import io
+import os
 import tempfile
 import time
 from dataclasses import dataclass, field
@@ -22,6 +23,30 @@ from benchmark.queries import QUERIES
 from benchmark.search_client import load_index, search
 
 CORPUS_DIR = Path(__file__).parent / "corpus"
+
+# Candidate paths for mecabrc across distributions.
+# Ubuntu/Debian: /etc/mecabrc
+# Arch Linux:    /etc/mecabrc
+# macOS Homebrew (Intel): /usr/local/etc/mecabrc
+# macOS Homebrew (Apple Silicon): /opt/homebrew/etc/mecabrc
+_MECABRC_CANDIDATES = [
+    Path("/etc/mecabrc"),
+    Path("/usr/local/etc/mecabrc"),
+    Path("/opt/homebrew/etc/mecabrc"),
+]
+
+
+def _ensure_mecabrc() -> None:
+    """Set MECABRC env var if not set and a known candidate path exists."""
+    if os.environ.get("MECABRC"):
+        return
+    for candidate in _MECABRC_CANDIDATES:
+        if candidate.exists():
+            os.environ["MECABRC"] = str(candidate)
+            return
+
+
+_ensure_mecabrc()
 
 # ---------------------------------------------------------------------------
 # Splitter registry
