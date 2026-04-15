@@ -2,10 +2,13 @@
 
 Usage:
     uv run python -m benchmark.run
+    uv run python -m benchmark.run --exclude MecabSplitter
+    uv run python -m benchmark.run --exclude MecabSplitter JanomeSplitter
 """
 
 from __future__ import annotations
 
+import argparse
 import importlib
 import io
 import tempfile
@@ -148,11 +151,15 @@ def load_splitter(class_path: str):
 # ---------------------------------------------------------------------------
 # Main benchmark logic
 # ---------------------------------------------------------------------------
-def run_benchmark() -> list[SplitterResult]:
+def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
     """Build Sphinx for each splitter, run all queries, and return results."""
+    excluded = set(exclude or [])
     results: list[SplitterResult] = []
 
     for display_name, type_value, class_path in SPLITTER_REGISTRY:
+        if display_name in excluded:
+            print(f"  [{display_name}] excluded by --exclude", flush=True)
+            continue
         print(f"  [{display_name}] checking availability ...", flush=True)
 
         # Check splitter availability
@@ -265,12 +272,24 @@ def print_per_query(results: list[SplitterResult]) -> None:
 # ---------------------------------------------------------------------------
 def main() -> None:
     """Entry point: run the full benchmark and print results."""
+    parser = argparse.ArgumentParser(
+        description="Benchmark Sphinx Japanese search splitters."
+    )
+    parser.add_argument(
+        "--exclude",
+        nargs="+",
+        metavar="NAME",
+        default=[],
+        help="Splitter names to skip (matched against SPLITTER_REGISTRY[*][0]).",
+    )
+    args = parser.parse_args()
+
     print("=" * 70)
     print("Sphinx Japanese Search Splitter Benchmark")
     print("=" * 70)
     print()
 
-    results = run_benchmark()
+    results = run_benchmark(exclude=args.exclude)
 
     print_summary(results)
     print_per_query(results)
