@@ -44,13 +44,10 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    {include-group = "test"},
-    {include-group = "docs"},
-    "doc8",
     "esbonio",
-    "ruff",
-    "ty",
-    "types-docutils>=0.21.0.20241128",
+    {include-group = "docs"},
+    {include-group = "lint"},
+    {include-group = "test"},
 ]
 docs = [
     "atsphinx-bulma>=0.4.2",
@@ -58,6 +55,12 @@ docs = [
     "sphinx-autobuild",
     "sphinx-intl",
     "sphinx-toolbox",
+]
+lint = [
+    "doc8",
+    "ruff",
+    "ty",
+    "types-docutils>=0.21.0.20241128",
 ]
 test = [
     "pytest",
