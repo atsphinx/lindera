@@ -1,0 +1,81 @@
+name: 'Release new version'
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  UV_NO_SYNC: 1
+  TASK_X_REMOTE_TASKFILES: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: 'atsphinx/.github/actions/setup-aqua@main'
+      - name: 'Build package'
+        run: |
+          uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages-${{ github.ref_name }}
+          path: dist/
+  gh-release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          name: packages-${{ github.ref_name }}
+          path: dist/
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'dist/*'
+          bodyFile: '.github/release-body.md'
+          draft: false
+          name: Release ${{ github.ref_name }}
+          tag: ${{ github.ref }}
+          prerelease: false
+  publish-pypi:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: success() && ${{ needs.prepare.outputs.is-release }}
+    environment:
+      name: 'pypi'
+      url: 'https://pypi.org/p/atsphinx-lindera-search'
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: packages-${{ github.ref_name }}
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+  deploy-docs:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: 'atsphinx/.github/actions/setup-aqua@main'
+      - name: Build document
+        run: |
+          task --yes setup docs:build-mini18n-dirhtml
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs/_build/mini18n-dirhtml
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
