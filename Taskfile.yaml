@@ -11,6 +11,16 @@ includes:
       SPHINX_DEFAULT_BUILDER: 'dirhtml'
 
 tasks:
+  benchmark:
+    desc: 'Run search quality benchmark across Japanese splitters'
+    cmds:
+      - 'uv run python -m benchmark.run {{.CLI_ARGS}}'
+
+  benchmark-simple:
+    desc: 'Run benchmark in compact mode (tokenizer quality metrics only)'
+    cmds:
+      - 'uv run python -m benchmark.run --simple {{.CLI_ARGS}}'
+
   setup:
     desc: 'Setup workspace'
     cmds:
