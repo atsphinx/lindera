@@ -43,8 +43,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
+benchmark = [
+    "janome>=0.5.0",
+    "mecab-python3>=1.0.12",
+]
 dev = [
     "esbonio",
+    {include-group = "benchmark"},
     {include-group = "docs"},
     {include-group = "lint"},
     {include-group = "test"},
