@@ -2,7 +2,7 @@
 atsphinx-lindera-search
 =======================
 
-Lindera bindings for Sphinx
+Lindera bindings for Sphinx.
 
 Getting started
 ===============
