@@ -51,32 +51,60 @@ _ensure_mecabrc()
 # ---------------------------------------------------------------------------
 # Splitter registry
 # ---------------------------------------------------------------------------
-# Each entry: (display_name, html_search_options type value, full class path)
+# Each entry: (display_name, type_value, class_path, extra_options)
+# where type_value goes into html_search_options['type']
 # - type_value=None means do not set 'type' in html_search_options (Sphinx default)
 # - type_value=<dotted path> is passed as html_search_options['type']
-# Add LindiraSplitter here once it is implemented.
-SPLITTER_REGISTRY: list[tuple[str, str | None, str]] = [
+# - extra_options is merged into html_search_options and passed to the splitter instance
+_LINDERA_CLASS = "atsphinx.lindera_search.splitter.LinderaSplitter"
+SPLITTER_REGISTRY: list[tuple[str, str | None, str, dict[str, str]]] = [
     (
         "DefaultSplitter",
         None,  # Sphinx 8.x: omit 'type' to use DefaultSplitter
         "sphinx.search.ja.DefaultSplitter",
+        {},
     ),
     (
         "JanomeSplitter",
         "sphinx.search.ja.JanomeSplitter",
         "sphinx.search.ja.JanomeSplitter",
+        {},
     ),
     (
         "MecabSplitter",
         "sphinx.search.ja.MecabSplitter",
         "sphinx.search.ja.MecabSplitter",
+        {},
     ),
     (
-        "LinderaSplitter",
-        "atsphinx.lindera_search.splitter.LinderaSplitter",
-        "atsphinx.lindera_search.splitter.LinderaSplitter",
+        "Lindera/IPAdic",
+        _LINDERA_CLASS,
+        _LINDERA_CLASS,
+        {"dict_type": "ipadic", "mode": "normal"},
+    ),
+    (
+        "Lindera/IPAdic/decompose",
+        _LINDERA_CLASS,
+        _LINDERA_CLASS,
+        {"dict_type": "ipadic", "mode": "decompose"},
+    ),
+    (
+        "Lindera/neologd",
+        _LINDERA_CLASS,
+        _LINDERA_CLASS,
+        {"dict_type": "ipadic-neologd", "mode": "normal"},
+    ),
+    (
+        "Lindera/neologd/decompose",
+        _LINDERA_CLASS,
+        _LINDERA_CLASS,
+        {"dict_type": "ipadic-neologd", "mode": "decompose"},
     ),
 ]
+
+# Column width for the splitter-name column — derived from registry so it
+# automatically widens when new entries are added.
+_NAME_W = max(len(name) for name, *_ in SPLITTER_REGISTRY)
 
 
 # ---------------------------------------------------------------------------
@@ -172,13 +200,19 @@ class SplitterResult:
 # ---------------------------------------------------------------------------
 # Build helper
 # ---------------------------------------------------------------------------
-def build_sphinx(splitter_type_value: str | None, output_dir: Path) -> float:
+def build_sphinx(
+    splitter_type_value: str | None,
+    output_dir: Path,
+    extra_options: dict[str, str] | None = None,
+) -> float:
     """Build Sphinx HTML with the given splitter type, return elapsed seconds."""
     sink = io.StringIO()
     if splitter_type_value is None:
         search_options: dict = {}
     else:
         search_options = {"type": splitter_type_value}
+    if extra_options:
+        search_options.update(extra_options)
     start = time.perf_counter()
     app = sphinx.application.Sphinx(
         srcdir=str(CORPUS_DIR),
@@ -197,12 +231,12 @@ def build_sphinx(splitter_type_value: str | None, output_dir: Path) -> float:
 # ---------------------------------------------------------------------------
 # Splitter instantiation helper
 # ---------------------------------------------------------------------------
-def load_splitter(class_path: str):
+def load_splitter(class_path: str, extra_options: dict[str, str] | None = None):
     """Import and instantiate a splitter class by its dotted path."""
     module_path, class_name = class_path.rsplit(".", 1)
     module = importlib.import_module(module_path)
     cls = getattr(module, class_name)
-    return cls({})
+    return cls(dict(extra_options or {}))
 
 
 # ---------------------------------------------------------------------------
@@ -213,7 +247,7 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
     excluded = set(exclude or [])
     results: list[SplitterResult] = []
 
-    for display_name, type_value, class_path in SPLITTER_REGISTRY:
+    for display_name, type_value, class_path, extra_options in SPLITTER_REGISTRY:
         if display_name in excluded:
             print(f"  [{display_name}] excluded by --exclude", flush=True)
             continue
@@ -221,7 +255,7 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
 
         # Check splitter availability
         try:
-            splitter = load_splitter(class_path)
+            splitter = load_splitter(class_path, extra_options)
         except Exception as exc:
             results.append(
                 SplitterResult(
@@ -242,7 +276,7 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
             # Build
             print("    building index ...", flush=True)
             try:
-                result.build_time = build_sphinx(type_value, output_dir)
+                result.build_time = build_sphinx(type_value, output_dir, extra_options)
             except Exception as exc:
                 result.available = False
                 result.unavailable_reason = f"build failed: {exc}"
@@ -282,29 +316,34 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
 # ---------------------------------------------------------------------------
 def print_summary(results: list[SplitterResult]) -> None:
     """Print a one-line-per-splitter summary table."""
-    print("\n" + "=" * 70)
+    # widths: name | Build(s) | Index(B) | Precision | Recall | F1
+    w = _NAME_W
+    sep = w + 1 + 8 + 1 + 10 + 1 + 10 + 1 + 8 + 1 + 6  # = w + 47
+    print("\n" + "=" * sep)
     print("SUMMARY")
-    print("=" * 70)
-    cols = f"{'Splitter':<22} {'Build(s)':>8} {'Index(B)':>10}"
-    cols += f" {'Precision':>10} {'Recall':>8} {'F1':>6}"
-    header = cols
-    print(header)
-    print("-" * 70)
+    print("=" * sep)
+    print(
+        f"{'Splitter':<{w}} {'Build(s)':>8} {'Index(B)':>10}"
+        f" {'Precision':>10} {'Recall':>8} {'F1':>6}"
+    )
+    print("-" * sep)
     for r in results:
         if not r.available:
-            print(f"{r.name:<22}  {'N/A (unavailable)'}")
+            print(f"{r.name:<{w}}  N/A (unavailable)")
             continue
         print(
-            f"{r.name:<22} {r.build_time:>8.2f} {r.index_size:>10,}"
+            f"{r.name:<{w}} {r.build_time:>8.2f} {r.index_size:>10,}"
             f" {r.precision:>9.1%} {r.recall:>7.1%} {r.f1:>5.1%}"
         )
 
 
 def print_per_query(results: list[SplitterResult]) -> None:
     """Print per-query token and hit breakdown for each available splitter."""
-    print("\n" + "=" * 70)
+    w = _NAME_W
+    sep = w + 47  # matches print_summary
+    print("\n" + "=" * sep)
     print("PER-QUERY BREAKDOWN")
-    print("=" * 70)
+    print("=" * sep)
 
     available = [r for r in results if r.available and r.query_results]
     if not available:
@@ -321,7 +360,8 @@ def print_per_query(results: list[SplitterResult]) -> None:
         for r in available:
             qr = next(x for x in r.query_results if x.query_id == qid)
             status = "OK" if qr.tp == len(qr.expected) and qr.fp == 0 else "NG"
-            print(f"  [{status}] {r.name:<22}  tokens={qr.tokens}  found={qr.results}")
+            # prefix "[OK] " or "[NG] " is 5 chars; indent 2 → total 7 before name
+            print(f"  [{status}] {r.name:<{w}}  tokens={qr.tokens}  found={qr.results}")
 
 
 def print_simple(results: list[SplitterResult]) -> None:
@@ -335,21 +375,23 @@ def print_simple(results: list[SplitterResult]) -> None:
     """
     available = [r for r in results if r.available and r.query_results]
 
-    print("\n" + "=" * 70)
+    # widths: name | Build(s) | Index(B) | Avg tokens | Single-tok%
+    w = _NAME_W
+    sep = w + 1 + 8 + 1 + 10 + 1 + 11 + 1 + 11  # = w + 44
+    print("\n" + "=" * sep)
     print("TOKENIZER QUALITY SUMMARY")
-    print("=" * 70)
-    cols = (
-        f"{'Splitter':<22} {'Build(s)':>8} {'Index(B)':>10}"
-        f" {'Avg tokens':>11} {'Single-tok%':>12}"
+    print("=" * sep)
+    print(
+        f"{'Splitter':<{w}} {'Build(s)':>8} {'Index(B)':>10}"
+        f" {'Avg tokens':>11} {'Single-tok%':>11}"
     )
-    print(cols)
-    print("-" * 70)
+    print("-" * sep)
     for r in results:
         if not r.available:
-            print(f"{r.name:<22}  N/A (unavailable)")
+            print(f"{r.name:<{w}}  N/A (unavailable)")
             continue
         print(
-            f"{r.name:<22} {r.build_time:>8.2f} {r.index_size:>10,}"
+            f"{r.name:<{w}} {r.build_time:>8.2f} {r.index_size:>10,}"
             f" {r.avg_token_count:>11.2f} {r.single_token_rate:>11.1%}"
         )
 
@@ -368,9 +410,9 @@ def print_simple(results: list[SplitterResult]) -> None:
         if len(token_variants) > 1:
             diverging.append((qid, rows))
 
-    print(f"\n{'=' * 70}")
+    print(f"\n{'=' * sep}")
     print(f"TOKENIZATION DIFFERENCES  ({len(diverging)} / {len(query_ids)} queries)")
-    print("=" * 70)
+    print("=" * sep)
     if not diverging:
         print("All splitters produced identical tokenizations.")
         return
@@ -380,7 +422,7 @@ def print_simple(results: list[SplitterResult]) -> None:
         sample_qr = next(x for x in sample_r.query_results if x.query_id == qid)
         print(f"\n{qid}: {sample_qr.query!r}  ({sample_qr.description})")
         for name, tokens in rows.items():
-            print(f"  {name:<22} {tokens}")
+            print(f"  {name:<{w}} {tokens}")
 
 
 # ---------------------------------------------------------------------------
