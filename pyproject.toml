@@ -31,6 +31,8 @@ classifiers = [
 ]
 readme = "README.rst"
 dependencies = [
+    "lindera-python>=3.0.4",
+    "requests>=2.33.1",
     "sphinx",
 ]
 
