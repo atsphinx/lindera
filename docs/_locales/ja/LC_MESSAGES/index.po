@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:48+0900\n"
+"POT-Creation-Date: 2026-04-17 04:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -29,10 +29,30 @@ msgid "Overview"
 msgstr ""
 
 #: ../../index.rst:8
-msgid "Todo"
+msgid "This package provides external features for Sphinx using Lindera."
 msgstr ""
 
-#: ../../index.rst:8
-msgid "Write it"
+#: ../../index.rst:10
+msgid "Lindera is a morphological analysis library in Rust."
 msgstr ""
+
+#: ../../index.rst:12
+msgid "https://github.com/lindera/lindera"
+msgstr ""
+
+#: ../../index.rst:13
+msgid "https://lindera.github.io/lindera/"
+msgstr ""
+
+#: ../../index.rst:15
+msgid ""
+"Currently, This is useful to enhance performance about full-text search "
+"in Sphinx document."
+msgstr ""
+
+#~ msgid "Todo"
+#~ msgstr ""
+
+#~ msgid "Write it"
+#~ msgstr ""
 

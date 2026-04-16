@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2026, Kazuya Takei
-# This file is distributed under the same license as the
-# atsphinx-lindera package.
+# This file is distributed under the same license as the atsphinx-lindera
+# package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
@@ -20,38 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: ../../guide.rst:3
-msgid "Getting Started"
-msgstr ""
-
-#: ../../guide.rst:6
-msgid "Instalation"
-msgstr ""
-
-#: ../../guide.rst:8
-msgid "This is uploaded on PyPI. You can install by your package manager."
-msgstr ""
-
-#: ../../guide.rst:20
+#: ../../usage/index.rst:3
 msgid "Usage"
 msgstr ""
 
-#: ../../guide.rst:22
-msgid "atsphinx-lindera has multiple features. See :doc:`usage/index`."
+#: ../../usage/index.rst:5
+msgid "atsphinx-lindera has multiple features using Lindera. [#]_"
 msgstr ""
 
-#~ msgid "User guide"
-#~ msgstr ""
-
-#~ msgid "Installation"
-#~ msgstr ""
-
-#~ msgid "Todo"
-#~ msgstr ""
-
-#~ msgid "Write it"
-#~ msgstr ""
-
-#~ msgid "Configuration"
-#~ msgstr ""
+#: ../../usage/index.rst:7
+msgid "It is only plan. There is only one feature."
+msgstr ""
 

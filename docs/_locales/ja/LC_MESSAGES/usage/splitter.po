@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Kazuya Takei
+# This file is distributed under the same license as the atsphinx-lindera
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: atsphinx-lindera 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-17 04:09+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../usage/splitter.rst:3
+msgid "Splitter"
+msgstr ""
+
+#: ../../usage/splitter.rst:5
+msgid ""
+"\"Splitter\" is custom class to split text for html searching. By using "
+"Lindera, you can improve the accuracy of full-text search for HTML."
+msgstr ""
+
+#: ../../usage/splitter.rst:9
+msgid "Usage"
+msgstr ""
+
+#: ../../usage/splitter.rst:11
+msgid ""
+"You need to set settings into :confval:`html_search_options` of your "
+"``conf.py``."
+msgstr ""
+
+#: ../../usage/splitter.rst:13
+msgid "Very simple example"
+msgstr ""
+
+#: ../../usage/splitter.rst:21
+msgid ""
+"When this settings is used, ``sphinx-build`` tokenizes Japanese text "
+"using Lindera."
+msgstr ""
+
+#: ../../usage/splitter.rst:25
+msgid "Configuration"
+msgstr ""
+
+#: ../../usage/splitter.rst:27
+msgid ":confval:`html_search_options` supports some options."
+msgstr ""
+
+#: ../../usage/splitter.rst:32
+msgid "Tokenize mode of Lindera."
+msgstr ""
+
+#: ../../usage/splitter.rst:34
+msgid "It accepts these:"
+msgstr ""
+
+#: ../../usage/splitter.rst:36
+msgid ""
+"`\"normal\" <https://lindera.github.io/lindera/concepts/tokenization.html"
+"#normal-mode>`_"
+msgstr ""
+
+#: ../../usage/splitter.rst:37
+msgid ""
+"`\"decompose\" "
+"<https://lindera.github.io/lindera/concepts/tokenization.html#decompose-"
+"mode>`_"
+msgstr ""
+
+#: ../../usage/splitter.rst:42
+msgid "Type of using system dictionary."
+msgstr ""
+
+#: ../../usage/splitter.rst:44
+msgid ""
+"lindera-python on PyPI doesn't have dictionary. Therefore, you need to "
+"download dictionary asset."
+msgstr ""
+
+#: ../../usage/splitter.rst:47
+msgid ""
+"atsphinx-lindera downloads system dictionary from GitHub Releases of "
+"lindera. This value is which type do you downoad."
+msgstr ""
+
+#: ../../usage/splitter.rst:50
+msgid "Supported types are:"
+msgstr ""
+
+#: ../../usage/splitter.rst:52
+msgid "\"ipadic\""
+msgstr ""
+
+#: ../../usage/splitter.rst:53
+msgid "\"ipadic-neologd\""
+msgstr ""
+
+#: ../../usage/splitter.rst:54
+msgid "\"cc-cedict\""
+msgstr ""
+
+#: ../../usage/splitter.rst:55
+msgid "\"jieba\""
+msgstr ""
+
+#: ../../usage/splitter.rst:56
+msgid "\"ko-dic\""
+msgstr ""
+
+#: ../../usage/splitter.rst:57
+msgid "\"unidic\""
+msgstr ""
+
