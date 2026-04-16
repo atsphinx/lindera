@@ -71,6 +71,11 @@ SPLITTER_REGISTRY: list[tuple[str, str | None, str]] = [
         "sphinx.search.ja.MecabSplitter",
         "sphinx.search.ja.MecabSplitter",
     ),
+    (
+        "LinderaSplitter",
+        "atsphinx.lindera_search.splitter.LinderaSplitter",
+        "atsphinx.lindera_search.splitter.LinderaSplitter",
+    ),
 ]
 
 
