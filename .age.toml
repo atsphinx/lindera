@@ -8,7 +8,7 @@ replace = "version = \"{{new_version}}\""
 
 
 [[files]]
-path = "src/atsphinx/lindera_search/__init__.py"
+path = "src/atsphinx/lindera/__init__.py"
 
 search = "version = \"{{current_version}}\""
 replace = "version = \"{{new_version}}\""
@@ -46,16 +46,16 @@ v{{current_version}}
 
 [[files]]
 path = ".github/release-body.md"
-search = "Release atsphinx-lindera-search v{{ current_version }}"
-replace = "Release atsphinx-lindera-search v{{ new_version }}"
+search = "Release atsphinx-lindera v{{ current_version }}"
+replace = "Release atsphinx-lindera v{{ new_version }}"
 
 [[files]]
 path = ".github/release-body.md"
-search = "- Changelog is https://github.com/atsphinx/lindera-search/blob/v{{ current_version }}/CHANGES.rst"
-replace = "- Changelog is https://github.com/atsphinx/lindera-search/blob/v{{ new_version }}/CHANGES.rst"
+search = "- Changelog is https://github.com/atsphinx/lindera/blob/v{{ current_version }}/CHANGES.rst"
+replace = "- Changelog is https://github.com/atsphinx/lindera/blob/v{{ new_version }}/CHANGES.rst"
 
 [[files]]
 path = ".github/release-body.md"
 regex = true
 search = "- Changes are .+"
-replace = "- Changes are https://github.com/atsphinx/lindera-search/compare/v{{ current_version }}...v{{ new_version }}/"
+replace = "- Changes are https://github.com/atsphinx/lindera/compare/v{{ current_version }}...v{{ new_version }}/"

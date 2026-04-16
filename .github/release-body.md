@@ -1,3 +1,3 @@
-Release atsphinx-lindera-search v0.0.0
+Release atsphinx-lindera v0.0.0
 
-- Changelog is https://github.com/atsphinx/lindera-search/blob/v0.0.0/CHANGES.rst
+- Changelog is https://github.com/atsphinx/lindera/blob/v0.0.0/CHANGES.rst

@@ -47,7 +47,7 @@ jobs:
     if: success() && ${{ needs.prepare.outputs.is-release }}
     environment:
       name: 'pypi'
-      url: 'https://pypi.org/p/atsphinx-lindera-search'
+      url: 'https://pypi.org/p/atsphinx-lindera'
     permissions:
       id-token: write
     steps:

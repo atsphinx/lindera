@@ -1,5 +1,5 @@
 [project]
-name = "atsphinx-lindera-search"
+name = "atsphinx-lindera"
 version = "0.0.0"
 description = "Lindera bindings for Sphinx"
 authors = [{name = "Kazuya Takei", email = "myself@attakei.net"}]
@@ -37,8 +37,8 @@ dependencies = [
 ]
 
 [project.urls]
-Home = "https://github.com/atsphinx/lindera-search"
-Documentation = "https://atsphinx.github.io/lindera-search"
+Home = "https://github.com/atsphinx/lindera"
+Documentation = "https://atsphinx.github.io/lindera"
 
 [build-system]
 requires = ["hatchling"]

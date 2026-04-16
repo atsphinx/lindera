@@ -7,7 +7,7 @@ When you want to this, you should set into your ``conf.py``.
 .. code:: python
 
    html_search_options = {
-       "type": "atsphinx.lindera_search.spliter.LinderSplitter"
+       "type": "atsphinx.lindera.splitter.LinderaSplitter"
    }
 """
 
@@ -21,8 +21,9 @@ from pathlib import Path
 from typing import Literal
 
 import requests
-from lindera import TokenizerBuilder  # ty: ignore[unresolved-import]
 from sphinx.search.ja import BaseSplitter
+
+from lindera import TokenizerBuilder  # ty: ignore[unresolved-import]
 
 RELEASED_DICT_TYPE = Literal[
     "ipadic", "ipadic-neologd", "cc-cedict", "jieba", "ko-dic", "unidic"

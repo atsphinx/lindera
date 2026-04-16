@@ -56,7 +56,7 @@ _ensure_mecabrc()
 # - type_value=None means do not set 'type' in html_search_options (Sphinx default)
 # - type_value=<dotted path> is passed as html_search_options['type']
 # - extra_options is merged into html_search_options and passed to the splitter instance
-_LINDERA_CLASS = "atsphinx.lindera_search.splitter.LinderaSplitter"
+_LINDERA_CLASS = "atsphinx.lindera.splitter.LinderaSplitter"
 SPLITTER_REGISTRY: list[tuple[str, str | None, str, dict[str, str]]] = [
     (
         "DefaultSplitter",

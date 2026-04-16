@@ -85,7 +85,7 @@ wheels = [
 ]
 
 [[package]]
-name = "atsphinx-lindera-search"
+name = "atsphinx-lindera"
 version = "0.0.0"
 source = { editable = "." }
 dependencies = [

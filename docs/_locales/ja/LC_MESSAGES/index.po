@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2026, Kazuya Takei
 # This file is distributed under the same license as the
-# atsphinx-lindera-search package.
+# atsphinx-lindera package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: atsphinx-lindera-search 0.0.0\n"
+"Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-16 00:48+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: ../../index.rst:3
-msgid "atsphinx-lindera-search"
+msgid "atsphinx-lindera"
 msgstr ""
 
 #: ../../index.rst:6
