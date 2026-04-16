@@ -58,6 +58,7 @@ dev = [
 ]
 docs = [
     "atsphinx-bulma>=0.4.2",
+    "atsphinx-footnotes>=0.3.2",
     "atsphinx-mini18n",
     "sphinx-autobuild",
     "sphinx-intl",

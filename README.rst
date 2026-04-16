@@ -2,18 +2,18 @@
 atsphinx-lindera
 ================
 
-Lindera bindings for Sphinx.
+Lindera binding components for Sphinx.
 
-Getting started
-===============
+Overview
+========
 
-.. code:: console
+This package provides external features for Sphinx using Lindera.
 
-   pip install atsphinx-lindera
+Lindera is a morphological analysis library in Rust.
+This uses Lindera as tokenizer for Japanese.
 
-.. code:: python
+Features
+========
 
-   extensions = [
-       ...,  # Your extensions
-       "atsphinx.lindera",
-   ]
+* Splitter for search tool of Sphinx.
+
