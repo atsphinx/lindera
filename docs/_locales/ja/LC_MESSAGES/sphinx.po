@@ -1,8 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
+# atsphinx-lindera Japanese Translation
 # Copyright (C) 2026, Kazuya Takei
 # This file is distributed under the same license as the
 # atsphinx-lindera package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+# Kazuya Takei <myself@attakei.net>, 2026.
 #
 #, fuzzy
 msgid ""
@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-16 00:48+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-04-17 00:00+0900\n"
+"Last-Translator: Kazuya Takei (Claude) <myself@attakei.net>\n"
 "Language: ja\n"
-"Language-Team: ja <LL@li.org>\n"
+"Language-Team: ja <>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,25 +22,25 @@ msgstr ""
 
 #: ../../_templates/navigation.html:2
 msgid "This Page"
-msgstr ""
+msgstr "このページ"
 
 #: ../../_templates/navigation.html:5
 msgid "Previous topic"
-msgstr ""
+msgstr "前のトピック"
 
 #: ../../_templates/navigation.html:9
 msgid "previous chapter"
-msgstr ""
+msgstr "前の章"
 
 #: ../../_templates/navigation.html:14
 msgid "Next topic"
-msgstr ""
+msgstr "次のトピック"
 
 #: ../../_templates/navigation.html:18
 msgid "next chapter"
-msgstr ""
+msgstr "次の章"
 
 #: ../../_templates/navigation.html:26
 msgid "Show"
-msgstr ""
+msgstr "表示"
 

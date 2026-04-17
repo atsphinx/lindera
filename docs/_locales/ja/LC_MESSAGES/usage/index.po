@@ -1,8 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
+# atsphinx-lindera Japanese Translation
 # Copyright (C) 2026, Kazuya Takei
 # This file is distributed under the same license as the atsphinx-lindera
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+# Kazuya Takei <myself@attakei.net>, 2026.
 #
 #, fuzzy
 msgid ""
@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-17 04:09+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-04-17 00:00+0900\n"
+"Last-Translator: Kazuya Takei (Claude) <myself@attakei.net>\n"
 "Language: ja\n"
-"Language-Team: ja <LL@li.org>\n"
+"Language-Team: ja <>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,13 +22,13 @@ msgstr ""
 
 #: ../../usage/index.rst:3
 msgid "Usage"
-msgstr ""
+msgstr "使用方法"
 
 #: ../../usage/index.rst:5
 msgid "atsphinx-lindera has multiple features using Lindera. [#]_"
-msgstr ""
+msgstr "atsphinx-linderaは、Linderaを利用した複数の機能を提供します。 [#]_"
 
 #: ../../usage/index.rst:7
 msgid "It is only plan. There is only one feature."
-msgstr ""
+msgstr "現時点では計画のみで、実装済みの機能は1つです。"
 
