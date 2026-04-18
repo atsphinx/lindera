@@ -7,10 +7,10 @@ Lindera binding components for Sphinx.
 Overview
 ========
 
-This package provides external features for Sphinx using Lindera.
+This package provides external features for Sphinx powered by Lindera.
 
-Lindera is a morphological analysis library in Rust.
-This uses Lindera as tokenizer for Japanese.
+Lindera is a morphological analysis library written in Rust.
+This package uses Lindera as Japanese tokenizer.
 
 Features
 ========
