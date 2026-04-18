@@ -1,8 +1,8 @@
-from atsphinx.lindera_search import __version__ as version
+from atsphinx.lindera import __version__ as version
 from atsphinx.mini18n import get_template_dir as get_mini18n_template_dir
 
 # -- Project information
-project = "atsphinx-lindera-search"
+project = "atsphinx-lindera"
 copyright = "2026, Kazuya Takei"
 author = "Kazuya Takei"
 release = version
@@ -14,6 +14,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     # Atsphinx extensions
+    "atsphinx.footnotes",
     "atsphinx.mini18n",
     # Third-party extensions
     "sphinx_toolbox.confval",
@@ -34,11 +35,12 @@ html_css_files = [
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css",
+    "custom.css",
 ]
-tml_theme_options = {
+html_theme_options = {
     "color_mode": "light",
     "bulmaswatch": "simplex",
-    "logo_description": "Documentation of atsphinx-lindera-search.",
+    "logo_description": "Documentation of atsphinx-lindera.",
     "navbar_icons": [
         {
             "label": "",
@@ -55,7 +57,7 @@ tml_theme_options = {
         ],
     },
 }
-tml_sidebars = {
+html_sidebars = {
     "**": [
         "sidebar/logo.html",
         "sidebar/line.html",
@@ -75,4 +77,4 @@ todo_include_todos = True
 # atsphinx.mini18n
 mini18n_default_language = "en"
 mini18n_support_languages = ["en", "ja"]
-mini18n_basepath = "/lindera-search/"
+mini18n_basepath = "/lindera/"

@@ -1,7 +1,7 @@
 # atsphinx-lindera Japanese Translation
 # Copyright (C) 2026, Kazuya Takei
-# This file is distributed under the same license as the
-# atsphinx-lindera package.
+# This file is distributed under the same license as the atsphinx-lindera
+# package.
 # Kazuya Takei <myself@attakei.net>, 2026.
 #
 #, fuzzy
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 00:48+0900\n"
+"POT-Creation-Date: 2026-04-17 04:09+0900\n"
 "PO-Revision-Date: 2026-04-17 00:00+0900\n"
 "Last-Translator: Kazuya Takei (Claude) <myself@attakei.net>\n"
 "Language: ja\n"
@@ -20,23 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: ../../changes.rst:3
-msgid "Changelogs"
-msgstr "変更履歴"
+#: ../../usage/index.rst:3
+msgid "Usage"
+msgstr "使用方法"
 
-#: ../../../CHANGES.rst:2
-msgid "v0.0.0"
-msgstr ""
+#: ../../usage/index.rst:5
+msgid "atsphinx-lindera has multiple features using Lindera. [#]_"
+msgstr "atsphinx-linderaは、Linderaを利用した複数の機能を提供します。 [#]_"
 
-#: ../../../CHANGES.rst
-msgid "Date"
-msgstr "日付"
-
-#: ../../../CHANGES.rst:4
-msgid "2026-04-16 (Asia/Tokyo)"
-msgstr ""
-
-#: ../../../CHANGES.rst:6
-msgid "Initial commit."
-msgstr "初回リリース。"
+#: ../../usage/index.rst:7
+msgid "It is only plan. There is only one feature."
+msgstr "現時点では計画のみで、実装済みの機能は1つです。"
 

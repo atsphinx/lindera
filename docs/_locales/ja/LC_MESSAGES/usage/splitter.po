@@ -1,0 +1,131 @@
+# atsphinx-lindera Japanese Translation
+# Copyright (C) 2026, Kazuya Takei
+# This file is distributed under the same license as the atsphinx-lindera
+# package.
+# Kazuya Takei <myself@attakei.net>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: atsphinx-lindera 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 15:31+0900\n"
+"PO-Revision-Date: 2026-04-18 15:40+0900\n"
+"Last-Translator: Kazuya Takei (Claude) <myself@attakei.net>\n"
+"Language: ja\n"
+"Language-Team: ja <>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../usage/splitter.rst:3
+msgid "Splitter"
+msgstr ""
+
+#: ../../usage/splitter.rst:5
+#, fuzzy
+msgid ""
+"\"Splitter\" is class to split text for html searching in sphinx-build. "
+"By using Lindera, you can improve the accuracy of full-text search for "
+"HTML."
+msgstr "\"Splitter\"はHTML検索のためにテキストを分割するクラスです。Linderaを利用することで、HTMLの全文検索精度を向上させることができます。"
+
+#: ../../usage/splitter.rst:9
+msgid "Usage"
+msgstr "使用方法"
+
+#: ../../usage/splitter.rst:11
+msgid ""
+"You need to set settings into :confval:`html_search_options` of your "
+"``conf.py``."
+msgstr "``conf.py`` の :confval:`html_search_options` に設定を追加する必要があります。"
+
+#: ../../usage/splitter.rst:13
+msgid "Very simple example"
+msgstr "最小構成の例"
+
+#: ../../usage/splitter.rst:21
+#, fuzzy
+msgid ""
+"When you write this settings, ``sphinx-build`` tokenizes Japanese text "
+"using Lindera."
+msgstr "この設定を記述すると、 ``sphinx-build`` はLinderaを使って日本語テキストをトークン化します。"
+
+#: ../../usage/splitter.rst:24
+msgid "Configuration"
+msgstr "設定"
+
+#: ../../usage/splitter.rst:26
+msgid ":confval:`html_search_options` supports some options."
+msgstr ":confval:`html_search_options` はいくつかのオプションをサポートしています。"
+
+#: ../../usage/splitter.rst:31
+msgid "Tokenize mode of Lindera."
+msgstr "Linderaのトークナイズモード。"
+
+#: ../../usage/splitter.rst:33
+msgid "It accepts these:"
+msgstr "以下の値を受け付けます："
+
+#: ../../usage/splitter.rst:35
+msgid ""
+"`\"normal\" <https://lindera.github.io/lindera/concepts/tokenization.html"
+"#normal-mode>`_"
+msgstr ""
+
+#: ../../usage/splitter.rst:36
+msgid ""
+"`\"decompose\" "
+"<https://lindera.github.io/lindera/concepts/tokenization.html#decompose-"
+"mode>`_"
+msgstr ""
+
+#: ../../usage/splitter.rst:41
+msgid "Type of using system dictionary."
+msgstr "使用するシステム辞書の種類。"
+
+#: ../../usage/splitter.rst:43
+msgid ""
+"lindera-python on PyPI doesn't have dictionary. Therefore, you need to "
+"download dictionary asset."
+msgstr "PyPI上のlindera-pythonには辞書が含まれていません。そのため、辞書アセットをダウンロードする必要があります。"
+
+#: ../../usage/splitter.rst:46
+#, fuzzy
+msgid ""
+"atsphinx-lindera downloads system dictionary from GitHub Releases of "
+"lindera. This value is which type do you download."
+msgstr ""
+"atsphinx-linderaはlinderaのGitHub "
+"Releasesからシステム辞書をダウンロードします。この値はダウンロードする辞書の種類を指定します。"
+
+#: ../../usage/splitter.rst:49
+msgid "Supported types are:"
+msgstr "サポートされている種類："
+
+#: ../../usage/splitter.rst:51
+msgid "\"ipadic\""
+msgstr ""
+
+#: ../../usage/splitter.rst:52
+msgid "\"ipadic-neologd\""
+msgstr ""
+
+#: ../../usage/splitter.rst:53
+msgid "\"cc-cedict\""
+msgstr ""
+
+#: ../../usage/splitter.rst:54
+msgid "\"jieba\""
+msgstr ""
+
+#: ../../usage/splitter.rst:55
+msgid "\"ko-dic\""
+msgstr ""
+
+#: ../../usage/splitter.rst:56
+msgid "\"unidic\""
+msgstr ""
+
