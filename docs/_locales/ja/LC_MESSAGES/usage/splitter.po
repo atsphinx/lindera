@@ -99,7 +99,7 @@ msgid ""
 "atsphinx-lindera downloads system dictionary from GitHub Releases of "
 "lindera. This value is which type do you downoad."
 msgstr ""
-"atsphinx-lineraはlinderaのGitHub Releasesからシステム辞書をダウンロードします。"
+"atsphinx-linderaはlinderaのGitHub Releasesからシステム辞書をダウンロードします。"
 "この値はダウンロードする辞書の種類を指定します。"
 
 #: ../../usage/splitter.rst:50

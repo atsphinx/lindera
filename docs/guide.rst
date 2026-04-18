@@ -2,8 +2,8 @@
 Getting Started
 ===============
 
-Instalation
-===========
+Installation
+============
 
 This is uploaded on PyPI.
 You can install by your package manager.
