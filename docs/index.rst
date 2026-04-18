@@ -12,7 +12,7 @@ Lindera is a morphological analysis library in Rust.
 * https://github.com/lindera/lindera
 * https://lindera.github.io/lindera/
 
-Currently, This is useful to enhance performance about full-text search in Sphinx document.
+Currently, this package is useful for improving full-text search performance in Sphinx documentation.
 
 .. toctree::
    :maxdepth: 1

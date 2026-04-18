@@ -19,5 +19,5 @@ You can install by your package manager.
 Usage
 =====
 
-atsphinx-lindera has multiple features.
+atsphinx-lindera currently provides one feature (Splitter).
 See :doc:`usage/index`.

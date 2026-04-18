@@ -2,9 +2,9 @@
 Usage
 =====
 
-atsphinx-lindera has multiple features using Lindera. [#]_
+atsphinx-lindera provides multiple features powered by Lindera. [#]_
 
-.. [#] It is only plan. There is only one feature.
+.. [#] This is still in progress; currently only one feature is available.
 
 .. toctree::
    :glob:
