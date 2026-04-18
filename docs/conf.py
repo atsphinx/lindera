@@ -37,7 +37,7 @@ html_css_files = [
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css",
     "custom.css",
 ]
-tml_theme_options = {
+html_theme_options = {
     "color_mode": "light",
     "bulmaswatch": "simplex",
     "logo_description": "Documentation of atsphinx-lindera.",
@@ -57,7 +57,7 @@ tml_theme_options = {
         ],
     },
 }
-tml_sidebars = {
+html_sidebars = {
     "**": [
         "sidebar/logo.html",
         "sidebar/line.html",
