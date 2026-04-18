@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atsphinx-lindera 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-17 04:09+0900\n"
-"PO-Revision-Date: 2026-04-17 00:00+0900\n"
+"POT-Creation-Date: 2026-04-18 15:31+0900\n"
+"PO-Revision-Date: 2026-04-18 15:40+0900\n"
 "Last-Translator: Kazuya Takei (Claude) <myself@attakei.net>\n"
 "Language: ja\n"
 "Language-Team: ja <>\n"
@@ -25,7 +25,8 @@ msgid "Getting Started"
 msgstr "はじめに"
 
 #: ../../guide.rst:6
-msgid "Instalation"
+#, fuzzy
+msgid "Installation"
 msgstr "インストール"
 
 #: ../../guide.rst:8
@@ -39,3 +40,4 @@ msgstr "使用方法"
 #: ../../guide.rst:22
 msgid "atsphinx-lindera has multiple features. See :doc:`usage/index`."
 msgstr "atsphinx-linderaには複数の機能があります。 :doc:`usage/index` を参照してください。"
+

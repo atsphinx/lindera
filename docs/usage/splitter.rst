@@ -2,7 +2,7 @@
 Splitter
 ========
 
-"Splitter" is custom class to split text for html searching.
+"Splitter" is class to split text for html searching in sphinx-build.
 By using Lindera, you can improve the accuracy of full-text search for HTML.
 
 Usage
@@ -18,8 +18,7 @@ You need to set settings into :confval:`html_search_options` of your ``conf.py``
        "type": "atsphinx.lindera.splitter.LinderaSplitter",
    }
 
-When this settings is used,
-``sphinx-build`` tokenizes Japanese text using Lindera.
+When you write this settings, ``sphinx-build`` tokenizes Japanese text using Lindera.
 
 Configuration
 =============
@@ -45,7 +44,7 @@ Configuration
    Therefore, you need to download dictionary asset.
 
    atsphinx-lindera downloads system dictionary from GitHub Releases of lindera.
-   This value is which type do you downoad.
+   This value is which type do you download.
 
    Supported types are:
 
