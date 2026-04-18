@@ -46,8 +46,7 @@ class SplitterOptions:
     @classmethod
     def from_dict(cls, options: dict[str, str]) -> "SplitterOptions":
         """Create object from options dict of sphinx configuration."""
-        if "type" in options:
-            del options["type"]
+        options.pop("type", None)
         return cls(**options)  # ty: ignore[invalid-argument-type]
 
 
@@ -82,6 +81,7 @@ class SystemDictionary:
         url = f"https://github.com/lindera/lindera/releases/download/v{self.version}/lindera-{self.dict_type}-{self.version}.zip"
         dest = self.local_path.parent
         dest.mkdir(exist_ok=True, parents=True)
+        # FIXME: Update for safer.
         with (
             requests.get(url, allow_redirects=True) as res,
             io.BytesIO(res.content) as bytes_io,
