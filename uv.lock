@@ -104,6 +104,7 @@ version = "0.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "lindera-python" },
+    { name = "platformdirs" },
     { name = "requests" },
     { name = "sphinx", version = "8.1.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "sphinx", version = "9.0.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
@@ -154,6 +155,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "lindera-python", specifier = ">=3.0.4" },
+    { name = "platformdirs", specifier = ">=4.9.6" },
     { name = "requests", specifier = ">=2.33.1" },
     { name = "sphinx" },
 ]

@@ -20,6 +20,7 @@ from importlib import metadata
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal
 
+import platformdirs
 import requests
 from sphinx.search.ja import BaseSplitter
 
@@ -56,7 +57,7 @@ class SystemDictionary:
 
     dict_type: RELEASED_DICT_TYPE
     version: str
-    cache_dir: Path = Path(__file__).parent / "_dict"
+    cache_dir: Path
 
     @property
     def local_path(self) -> Path:
@@ -67,7 +68,9 @@ class SystemDictionary:
     def init(cls, dict_type: RELEASED_DICT_TYPE) -> "SystemDictionary":
         """Create object from dict-type."""
         version = metadata.version("lindera-python")
-        return cls(dict_type=dict_type, version=version)
+        dirs = platformdirs.PlatformDirs("atsphinx-lindera")
+        cache_dir = dirs.user_cache_path / "_dict"
+        return cls(dict_type=dict_type, version=version, cache_dir=cache_dir)
 
     def fetch(self) -> None:
         """Fetch dictionary files from publshed website.
