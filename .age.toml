@@ -25,7 +25,7 @@ replace = """
 v{{new_version}}
 {{#sameLengthChars}}=@v{{new_version}}{{/sameLengthChars}}
 
-:Date: {{ now|date }} (Asia/Tokyo)
+:Date: {{ nowFormat.dateISO }} (Asia/Tokyo)
 
 Breaking changes
 ----------------
