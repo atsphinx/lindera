@@ -18,12 +18,15 @@ import zipfile
 from dataclasses import dataclass
 from importlib import metadata
 from pathlib import Path
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 import requests
 from sphinx.search.ja import BaseSplitter
 
 from lindera import TokenizerBuilder  # ty: ignore[unresolved-import]
+
+if TYPE_CHECKING:
+    from lindera import Tokenizer  # ty: ignore[unresolved-import]
 
 RELEASED_DICT_TYPE = Literal[
     "ipadic", "ipadic-neologd", "cc-cedict", "jieba", "ko-dic", "unidic"
@@ -91,7 +94,7 @@ class LinderaSplitter(BaseSplitter):
         options_ = SplitterOptions.from_dict(options)
         dict_ = SystemDictionary.init(options_.dict_type)
         dict_.fetch()
-        self.tokenizer = (
+        self.tokenizer: Tokenizer = (
             TokenizerBuilder()
             .set_mode(options_.mode)
             .set_dictionary(str(dict_.local_path))
