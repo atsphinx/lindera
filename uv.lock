@@ -154,16 +154,16 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "lindera-python", specifier = ">=3.0.4" },
-    { name = "platformdirs", specifier = ">=4.9.6" },
-    { name = "requests", specifier = ">=2.33.1" },
+    { name = "lindera-python", specifier = ">=3.0" },
+    { name = "platformdirs", specifier = ">=4.0" },
+    { name = "requests", specifier = ">=2.28" },
     { name = "sphinx" },
 ]
 
 [package.metadata.requires-dev]
 benchmark = [
     { name = "janome", specifier = ">=0.5.0" },
-    { name = "mecab-python3", specifier = ">=1.0.12" },
+    { name = "mecab-python3", specifier = ">=1.0" },
 ]
 dev = [
     { name = "atsphinx-bulma", specifier = ">=0.4.2" },
@@ -172,14 +172,14 @@ dev = [
     { name = "doc8" },
     { name = "esbonio" },
     { name = "janome", specifier = ">=0.5.0" },
-    { name = "mecab-python3", specifier = ">=1.0.12" },
+    { name = "mecab-python3", specifier = ">=1.0" },
     { name = "pytest" },
     { name = "ruff" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-intl" },
     { name = "sphinx-toolbox" },
     { name = "ty" },
-    { name = "types-docutils", specifier = ">=0.21.0.20241128" },
+    { name = "types-docutils", specifier = ">=0.21" },
 ]
 docs = [
     { name = "atsphinx-bulma", specifier = ">=0.4.2" },
@@ -193,7 +193,7 @@ lint = [
     { name = "doc8" },
     { name = "ruff" },
     { name = "ty" },
-    { name = "types-docutils", specifier = ">=0.21.0.20241128" },
+    { name = "types-docutils", specifier = ">=0.21" },
 ]
 test = [{ name = "pytest" }]
 
