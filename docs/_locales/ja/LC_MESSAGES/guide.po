@@ -38,4 +38,4 @@ msgstr "使用方法"
 
 #: ../../guide.rst:22
 msgid "atsphinx-lindera has multiple features. See :doc:`usage/index`."
-msgstr "atsphinx-lineraには複数の機能があります。 :doc:`usage/index` を参照してください。"
+msgstr "atsphinx-linderaには複数の機能があります。 :doc:`usage/index` を参照してください。"
