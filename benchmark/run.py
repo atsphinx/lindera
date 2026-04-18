@@ -231,6 +231,17 @@ def build_sphinx(
 # ---------------------------------------------------------------------------
 # Splitter instantiation helper
 # ---------------------------------------------------------------------------
+def check_availability(class_path: str) -> tuple[bool, str]:
+    """Check if a splitter class is importable without instantiating it."""
+    try:
+        module_path, class_name = class_path.rsplit(".", 1)
+        module = importlib.import_module(module_path)
+        getattr(module, class_name)
+        return True, ""
+    except (ImportError, AttributeError) as exc:
+        return False, str(exc)
+
+
 def load_splitter(class_path: str, extra_options: dict[str, str] | None = None):
     """Import and instantiate a splitter class by its dotted path."""
     module_path, class_name = class_path.rsplit(".", 1)
@@ -253,18 +264,17 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
             continue
         print(f"  [{display_name}] checking availability ...", flush=True)
 
-        # Check splitter availability
-        try:
-            splitter = load_splitter(class_path, extra_options)
-        except Exception as exc:
+        # Check splitter availability (import only, no instantiation)
+        available, reason = check_availability(class_path)
+        if not available:
             results.append(
                 SplitterResult(
                     name=display_name,
                     available=False,
-                    unavailable_reason=str(exc),
+                    unavailable_reason=reason,
                 )
             )
-            print(f"    -> skipped: {exc}")
+            print(f"    -> skipped: {reason}")
             continue
 
         result = SplitterResult(name=display_name, available=True)
@@ -273,7 +283,7 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
             output_dir = Path(tmpdir) / "build"
             output_dir.mkdir()
 
-            # Build
+            # Build (includes cold-start cost such as dict download)
             print("    building index ...", flush=True)
             try:
                 result.build_time = build_sphinx(type_value, output_dir, extra_options)
@@ -286,6 +296,9 @@ def run_benchmark(exclude: list[str] | None = None) -> list[SplitterResult]:
 
             result.index_size = (output_dir / "searchindex.js").stat().st_size
             index = load_index(output_dir)
+
+            # Instantiate splitter for query tokenization (dict already cached)
+            splitter = load_splitter(class_path, extra_options)
 
             # Run queries
             for q in QUERIES:
