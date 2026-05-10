@@ -1,10 +1,10 @@
-=====
-Usage
-=====
+========
+使用方法
+========
 
-atsphinx-lindera provides multiple features powered by Lindera. [#]_
+atsphinx-linderaは、Linderaを利用した複数の機能を提供します。 [#]_
 
-.. [#] This is still in progress; currently only one feature is available.
+.. [#] 現時点では計画のみで、実装済みの機能は1つです。
 
 .. toctree::
    :glob:

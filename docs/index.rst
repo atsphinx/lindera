@@ -2,17 +2,18 @@
 atsphinx-lindera
 ================
 
-Overview
-========
+概要
+====
 
-This package provides external features for Sphinx using Lindera.
+Linderaを利用したSphinx向け機能を提供するための拡張ライブラリです。
 
-Lindera is a morphological analysis library in Rust.
+LinderaはRustで実装された形態素解析ライブラリです。
+詳細は下記のURLを参照してください。
 
 * https://github.com/lindera/lindera
 * https://lindera.github.io/lindera/
 
-Currently, this package is useful for improving full-text search performance in Sphinx documentation.
+現在、Sphinxドキュメントの全文検索のパフォーマンス向上に利用できます。
 
 .. toctree::
    :maxdepth: 1
