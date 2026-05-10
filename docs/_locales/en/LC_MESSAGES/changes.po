@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Kazuya Takei
+# This file is distributed under the same license as the atsphinx-lindera
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: atsphinx-lindera 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-10 16:48+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../changes.rst:3
+msgid "更新履歴"
+msgstr "Changelog"
+
+#: ../../../CHANGES.rst:2
+msgid "v0.1.0"
+msgstr ""
+
+#: ../../../CHANGES.rst
+msgid "Date"
+msgstr ""
+
+#: ../../../CHANGES.rst:4
+msgid "2026-04-18 (Asia/Tokyo)"
+msgstr ""
+
+#: ../../../CHANGES.rst:7
+msgid "Features"
+msgstr ""
+
+#: ../../../CHANGES.rst:9
+msgid ""
+"Add ``LinderaSplitter``: a custom splitter for Sphinx Japanese full-text "
+"search using Lindera as the tokenizer. Set it via "
+"``html_search_options[\"type\"]`` in ``conf.py``."
+msgstr ""
+
+#: ../../../CHANGES.rst:13
+msgid "v0.0.0"
+msgstr ""
+
+#: ../../../CHANGES.rst:15
+msgid "2026-04-16 (Asia/Tokyo)"
+msgstr ""
+
+#: ../../../CHANGES.rst:17
+msgid "Initial commit."
+msgstr ""
+

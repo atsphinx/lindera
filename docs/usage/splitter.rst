@@ -2,35 +2,35 @@
 Splitter
 ========
 
-"Splitter" is class to split text for html searching in sphinx-build.
-By using Lindera, you can improve the accuracy of full-text search for HTML.
+"Splitter"はHTML検索のためにテキストを分割するクラスです。
+Linderaを利用することで、HTMLビルダー利用時に全文検索の精度を向上させることができます。
 
-Usage
-=====
+使用方法
+========
 
-You need to set settings into :confval:`html_search_options` of your ``conf.py``.
+``conf.py`` の :confval:`html_search_options` に設定を追加する必要があります。
 
 .. code-block:: python
-   :caption: Very simple example
+   :caption: 最小構成の例
 
    # Your conf.py
    html_search_options = {
        "type": "atsphinx.lindera.splitter.LinderaSplitter",
    }
 
-When you write this settings, ``sphinx-build`` tokenizes Japanese text using Lindera.
+この設定を記述すると、 ``sphinx-build`` の実行時にLinderaを使って日本語テキストをトークン化します。
 
-Configuration
-=============
+設定
+====
 
-:confval:`html_search_options` supports some options.
+:confval:`html_search_options` はいくつかのオプションをサポートしています。
 
 .. py:attribute:: mode
    :type: str
 
-   Tokenize mode of Lindera.
+   Linderaのトークナイズモード。
 
-   It accepts these:
+   以下の値を受け付けます：
 
    - `"normal" <https://lindera.github.io/lindera/concepts/tokenization.html#normal-mode>`_
    - `"decompose" <https://lindera.github.io/lindera/concepts/tokenization.html#decompose-mode>`_
@@ -38,15 +38,15 @@ Configuration
 .. py:attribute:: dict_type
    :type: str
 
-   Type of using system dictionary.
+   使用するシステム辞書の種類。
 
-   lindera-python on PyPI doesn't have dictionary.
-   Therefore, you need to download dictionary asset.
+   PyPI上のlindera-pythonには辞書が含まれていません。
+   そのため、辞書アセットをダウンロードする必要があります。
 
-   atsphinx-lindera downloads system dictionary from GitHub Releases of lindera.
-   This value is which type do you download.
+   atsphinx-linderaではlinderaのGitHub Releasesからシステム辞書をダウンロードします。
+   この値はダウンロードする辞書の種類を指定します。
 
-   Supported types are:
+   サポートされている種類：
 
    - "ipadic"
    - "ipadic-neologd"

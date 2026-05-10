@@ -1,12 +1,12 @@
-===============
-Getting Started
-===============
+========
+はじめに
+========
 
-Installation
+インストール
 ============
 
-This is uploaded on PyPI.
-You can install by your package manager.
+PyPIで公開されています。
+お使いのパッケージマネージャーでインストールできます。
 
 .. code:: console
 
@@ -16,8 +16,8 @@ You can install by your package manager.
 
    uv add atsphinx-lindera
 
-Usage
-=====
+使用方法
+========
 
-atsphinx-lindera currently provides one feature (Splitter).
-See :doc:`usage/index`.
+atsphinx-linderaには複数の機能があります。
+:doc:`usage/index` を参照してください。
